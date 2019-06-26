@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F6C2CC82-8F87-4427-A922-24846196FEE6}</ProjectGuid>
+    <ProjectGuid>{08620C45-CE2D-46EC-B691-13206C48E039}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ForumEpam2019_Entities</RootNamespace>
-    <AssemblyName>ForumEpam2019 Entities</AssemblyName>
+    <RootNamespace>ForumEpam2019.BusinessLayer</RootNamespace>
+    <AssemblyName>ForumEpam2019.BusinessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -50,8 +50,6 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -69,9 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\ContextInitializer.cs" />
-    <Compile Include="Context\ForumContext.cs" />
-    <Compile Include="Models\ProfileInfo.cs" />
+    <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="DTO\ProfileInfoDTO.cs" />
+    <Compile Include="Managers\ProfileInfoManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,5 +78,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ForumEpam2019 Entities\ForumEpam2019.Entities.csproj">
+      <Project>{F6C2CC82-8F87-4427-A922-24846196FEE6}</Project>
+      <Name>ForumEpam2019.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

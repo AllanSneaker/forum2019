@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ForumEpam2019.BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,8 @@ namespace ForumEpam2019.ServiceLayer
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            AutoMapperConfig.Initialize();
         }
     }
 }
