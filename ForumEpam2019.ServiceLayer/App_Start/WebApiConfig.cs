@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ForumEpam2019.ServiceLayer
 {
@@ -14,7 +15,7 @@ namespace ForumEpam2019.ServiceLayer
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            //config.EnableCors();
+            config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
