@@ -9,15 +9,21 @@ import { UserService } from './shared/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { from } from 'rxjs';
 import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
-    HomeComponent
+    SignInComponent,
+    HomeComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,8 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-   BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
