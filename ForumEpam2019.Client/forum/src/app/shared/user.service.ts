@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {  HttpResponse } from "@angular/common/http";
-import {Observable} from 'rxjs';
-import { filter } from 'rxjs/operators';
-// import 'rxjs/add/operator/map';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { HttpResponse } from "@angular/http/";
+import {HttpResponse} from "@angular/common/http";
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 import { User } from './user.model';
- 
+
+
 @Injectable()
 export class UserService {
   readonly rootUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
- 
-  registerUser(user : User){
+
+  registerUser(user: User) {
     const body: User = {
       UserName: user.UserName,
       Password: user.Password,
@@ -19,7 +20,18 @@ export class UserService {
       FirstName: user.FirstName,
       LastName: user.LastName
     }
-    return this.http.post(this.rootUrl + '/api/User/Register', body);
+
+    var reqHeader = new HttpHeaders({'No-Auth':'True'});
+    return this.http.post(this.rootUrl + '/api/User/Register', body,{headers : reqHeader});
   }
- 
+
+  userAuthentication(userName, password) {
+    var data = "username=" + userName + "&password=" + password + "&grant_type=password";
+    var reqHeader = new HttpHeaders({ 'Content-Type': 'application/x-www-urlencoded','No-Auth':'True' });
+    return this.http.post(this.rootUrl + '/token', data, { headers: reqHeader });
+  }
+
+  getUserClaims(){
+   return  this.http.get(this.rootUrl+'/api/GetUserClaims');
+  }
 }

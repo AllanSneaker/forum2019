@@ -15,7 +15,7 @@ namespace ForumEpam2019.ServiceLayer
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
+            //config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -25,6 +25,8 @@ namespace ForumEpam2019.ServiceLayer
 
             config.Formatters.JsonFormatter.SupportedMediaTypes
                 .Add(new MediaTypeHeaderValue("text/html"));
+
+            config.Filters.Add(new AuthorizeAttribute());
         }
     }
 }
