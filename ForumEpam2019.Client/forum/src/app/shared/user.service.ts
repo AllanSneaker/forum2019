@@ -12,7 +12,7 @@ export class UserService {
   readonly rootUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
-  registerUser(user: User, roles: string[]) {
+  registerUser(user: User) {
     const body: User = {
       UserName: user.UserName,
       Password: user.Password,
@@ -33,22 +33,5 @@ export class UserService {
 
   getUserClaims(){
    return  this.http.get(this.rootUrl+'/api/GetUserClaims');
-  }
-
-  getAllRoles() {
-    var reqHeader = new HttpHeaders({ 'No-Auth': 'True' });
-    return this.http.get(this.rootUrl + '/api/GetAllRoles', { headers: reqHeader });
-  }
-
-  roleMatch(allowedRoles): boolean {
-    var isMatch = false;
-    var userRoles: string[] = JSON.parse(localStorage.getItem('userRoles'));
-    allowedRoles.forEach(element => {
-      if (userRoles.indexOf(element) > -1) {
-        isMatch = true;
-        return false;
-      }
-    });
-    return isMatch;
   }
 }
