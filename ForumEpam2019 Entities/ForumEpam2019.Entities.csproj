@@ -101,13 +101,9 @@
   <ItemGroup>
     <Compile Include="Context\ContextInitializer.cs" />
     <Compile Include="Context\ForumContext.cs" />
-    <Compile Include="Migrations\201906272047599_InitialCreate.cs" />
-    <Compile Include="Migrations\201906272047599_InitialCreate.Designer.cs">
-      <DependentUpon>201906272047599_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906281239147_Initial.cs" />
-    <Compile Include="Migrations\201906281239147_Initial.Designer.cs">
-      <DependentUpon>201906281239147_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201907150833219_InitialMigration.cs" />
+    <Compile Include="Migrations\201907150833219_InitialMigration.Designer.cs">
+      <DependentUpon>201907150833219_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -120,11 +116,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906272047599_InitialCreate.resx">
-      <DependentUpon>201906272047599_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906281239147_Initial.resx">
-      <DependentUpon>201906281239147_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907150833219_InitialMigration.resx">
+      <DependentUpon>201907150833219_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

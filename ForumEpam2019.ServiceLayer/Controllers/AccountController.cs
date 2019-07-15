@@ -31,6 +31,7 @@ namespace ForumEpam2019.ServiceLayer.Controllers
                 RequiredLength = 3
             };
             IdentityResult result = manager.Create(user, model.Password);
+            manager.AddToRoles(user.Id, model.Roles);
             return result;
         }
 
@@ -49,6 +50,31 @@ namespace ForumEpam2019.ServiceLayer.Controllers
                 LoggedOn = identityClaims.FindFirst("LoggedOn").Value
             };
             return model;
+        }
+
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Route("api/Admin")]
+        public string ForAdminRole()
+        {
+            return "admin ";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Moder")]
+        [Route("api/Moder")]
+        public string ForModerRole()
+        {
+            return "moder";
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "User")]
+        [Route("api/User")]
+        public string ForUserRole()
+        {
+            return "user";
         }
     }
 }

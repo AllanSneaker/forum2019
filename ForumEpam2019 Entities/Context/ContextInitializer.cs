@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ForumEpam2019.Entities.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ForumEpam2019.Entities.Context
 {
@@ -29,6 +30,15 @@ namespace ForumEpam2019.Entities.Context
             };
 
             context.ProfileInfos.AddRange(profiles);
+
+            IdentityRole role1 = new IdentityRole() { Name = "Admin" };
+            IdentityRole role2 = new IdentityRole() { Name = "Moder" };
+            IdentityRole role3 = new IdentityRole() { Name = "User" };
+            context.Roles.Add(role1);
+            context.Roles.Add(role2);
+            context.Roles.Add(role3);
+
+
             context.SaveChanges();
         }
     }

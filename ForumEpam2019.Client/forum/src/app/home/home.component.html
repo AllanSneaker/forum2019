@@ -3,6 +3,9 @@
     <!-- <a href="#" class="brand-logo center"> -->
       <!-- <i class="material-icons">cloud</i>Dotnet Mob App</a> -->
     <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li  *ngIf="userService.roleMatch(['Admin'])">
+            <a routerLink="/adminPanel">Admin Panel</a>
+          </li>
       <li>
         <a (click)="Logout()">Logout</a>
       </li>
