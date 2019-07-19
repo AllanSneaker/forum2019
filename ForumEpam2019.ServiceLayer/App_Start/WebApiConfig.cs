@@ -4,6 +4,10 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using ForumEpam2019.BusinessLayer.Configurations;
+using ForumEpam2019.BusinessLayer.Managers;
+using ForumEpam2019.BusinessLayer.Repository;
+using Unity;
 
 namespace ForumEpam2019.ServiceLayer
 {
@@ -11,9 +15,12 @@ namespace ForumEpam2019.ServiceLayer
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API configuration and services
+            //it work
+            //var container = new UnityContainer();
+            //container.RegisterType<IProfileInfoRepository, ProfileInfoManager>();
+            config.DependencyResolver = new UnityResolver(UnityConfig.BuildUnityContainer());
 
-            // Web API routes
+
             config.MapHttpAttributeRoutes();
             //config.EnableCors(new EnableCorsAttribute("http://localhost:4200", headers: "*", methods: "*"));
 

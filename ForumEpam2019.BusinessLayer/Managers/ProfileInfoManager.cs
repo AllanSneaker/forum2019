@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ForumEpam2019.BusinessLayer.DTO;
+using ForumEpam2019.BusinessLayer.Repository;
 using ForumEpam2019.Entities.Context;
 
 namespace ForumEpam2019.BusinessLayer.Managers
 {
-  public  class ProfileInfoManager : IDisposable
+  public  class ProfileInfoManager : IDisposable, IProfileInfoRepository
     {
         private IMapper autoMapper = Mapper.Instance;
         private ForumContext context;
@@ -19,16 +20,24 @@ namespace ForumEpam2019.BusinessLayer.Managers
             context = new ForumContext();
         }
 
-        public IEnumerable<ProfileInfoDTO> GetAllProfileInfos()
+        public IEnumerable<ProfileInfoDto> GetAllProfileInfos()
         {
-            return autoMapper.Map<IEnumerable<ProfileInfoDTO>>(context.ProfileInfos.OrderByDescending(p => p.Id)).ToList();
+            return autoMapper.Map<IEnumerable<ProfileInfoDto>>(context.ProfileInfos.OrderByDescending(p => p.Id)).ToList();
         }
 
-        public ProfileInfoDTO GetProfileInfo(int id)
+        public ProfileInfoDto GetProfileInfo(int id)
         {
-            return autoMapper.Map<ProfileInfoDTO>(context.ProfileInfos.Where(p => p.Id == id).FirstOrDefault());
+            return autoMapper.Map<ProfileInfoDto>(context.ProfileInfos.Where(p => p.Id == id).FirstOrDefault());
+        }
+        public bool AddProfileInfo(ProfileInfoDto profileInfoDto)
+        {
+            throw new NotImplementedException();
         }
 
+        public bool EditProfileInfo(int Id, ProfileInfoDto value)
+        {
+            throw new NotImplementedException();
+        }
         public bool ProfileInfoExist(int id)
         {
             return context.ProfileInfos.Any(p => p.Id == id);

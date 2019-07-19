@@ -7,6 +7,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using ForumEpam2019.BusinessLayer.Configurations;
+using UnityConfig = ForumEpam2019.BusinessLayer.UnityConfig;
 
 namespace ForumEpam2019.ServiceLayer
 {
@@ -20,6 +22,10 @@ namespace ForumEpam2019.ServiceLayer
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             AutoMapperConfig.Initialize();
+            //UnityConfig.RegisterComponents();
+            //UnityConfig.Initialize();
+
+
         }
     }
 }

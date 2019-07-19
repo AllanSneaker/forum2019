@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForumEpam2019.BusinessLayer.DTO
 {
-    public class ProfileInfoDTO
+    public class ProfileInfoDto
     {
         public int Id { get; set; }
         public string FullName { get; set; }
