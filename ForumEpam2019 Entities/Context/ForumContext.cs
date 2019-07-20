@@ -1,20 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 using ForumEpam2019.Entities.Models;
 using ForumEpam2019_Entities.Models;
+using ForumEpam2019_Entities.Models.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 
 namespace ForumEpam2019.Entities.Context
 {
-
-    public class ApplicationUser : IdentityUser
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-    }
     public class ForumContext : IdentityDbContext<ApplicationUser>
     {
         static ForumContext()

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ForumEpam2019_Entities.Models.Identity;
 
 namespace ForumEpam2019.ServiceLayer
 {

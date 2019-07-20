@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ForumEpam2019.BusinessLayer.DTO;
 using ForumEpam2019.BusinessLayer.Repository;
 using ForumEpam2019.Entities.Context;
+using ForumEpam2019.Entities.Interfaces;
 
 namespace ForumEpam2019.BusinessLayer.Managers
 {
@@ -14,8 +15,8 @@ namespace ForumEpam2019.BusinessLayer.Managers
     {
         private IMapper autoMapper = Mapper.Instance;
         private ForumContext context;
-
-        public ProfileInfoManager()
+        //private IUnitOfWork context;
+        public ProfileInfoManager(/*IUnitOfWork unitOfWork*/)
         {
             context = new ForumContext();
         }
@@ -28,6 +29,7 @@ namespace ForumEpam2019.BusinessLayer.Managers
         public ProfileInfoDto GetProfileInfo(int id)
         {
             return autoMapper.Map<ProfileInfoDto>(context.ProfileInfos.Where(p => p.Id == id).FirstOrDefault());
+            throw new NotImplementedException();
         }
         public bool AddProfileInfo(ProfileInfoDto profileInfoDto)
         {
@@ -40,7 +42,8 @@ namespace ForumEpam2019.BusinessLayer.Managers
         }
         public bool ProfileInfoExist(int id)
         {
-            return context.ProfileInfos.Any(p => p.Id == id);
+             return context.ProfileInfos.Any(p => p.Id == id);
+            //throw new NotImplementedException();
         }
         public void Dispose()
         {

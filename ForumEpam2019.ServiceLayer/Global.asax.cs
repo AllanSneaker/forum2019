@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using ForumEpam2019.BusinessLayer.Configurations;
-using UnityConfig = ForumEpam2019.BusinessLayer.UnityConfig;
 
 namespace ForumEpam2019.ServiceLayer
 {

@@ -1,14 +1,13 @@
 ﻿using ForumEpam2019.BusinessLayer.Managers;
 using ForumEpam2019.BusinessLayer.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Mvc;
+using ForumEpam2019.Entities.Interfaces;
+using ForumEpam2019_Entities.Interfaces;
+using ForumEpam2019_Entities.Repositories;
 using Unity;
+using Unity.Injection;
 using Unity.WebApi;
+using Unity.Lifetime;
+using Unity.AspNet.Mvc;
 
 namespace ForumEpam2019.BusinessLayer.Configurations
 {
@@ -17,8 +16,14 @@ namespace ForumEpam2019.BusinessLayer.Configurations
         public static IUnityContainer BuildUnityContainer()
         {
             var container = new UnityContainer();
-            container.RegisterType<IProfileInfoRepository, ProfileInfoManager>();
+            //container.RegisterType<IUnitOfWork,UnitOfWorkEF>(new HierarchicalLifetimeManager(),
+            //     new InjectionConstructor());
 
+            //container.RegisterType<IUnitOfWork, UnitOfWorkEF>(new PerRequestLifetimeManager(),
+            //    new InjectionConstructor("name=ForumContext"));
+            container.RegisterType(typeof(IRepository<>), typeof(GenericRepository<>));
+
+            container.RegisterType<IProfileInfoRepository, ProfileInfoManager>();
             return container;
         }
     }

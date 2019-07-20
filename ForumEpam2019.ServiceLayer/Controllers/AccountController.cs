@@ -10,6 +10,7 @@ using ForumEpam2019.Entities.Context;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using System.Web.Http.Cors;
+using ForumEpam2019_Entities.Models.Identity;
 
 namespace ForumEpam2019.ServiceLayer.Controllers
 {
