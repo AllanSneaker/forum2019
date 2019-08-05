@@ -10,10 +10,11 @@ namespace ForumEpam2019.BusinessLayer.Configurations
         public AutoMapperConfig()
         {
             CreateMap<ProfileInfo, ProfileInfoDto>().ReverseMap();
-            CreateMap<Author, AuthorDto>().ReverseMap();
+            CreateMap<Account, AccountDto>().ReverseMap();
             CreateMap<Comment, CommentDto>().ReverseMap();
             CreateMap<HashTag, HashTagDto>().ReverseMap();
             CreateMap<Post, PostDto>().ReverseMap();
+            CreateMap<Author, AuthorDto>().ReverseMap();
         }
 
         public static void Initialize()

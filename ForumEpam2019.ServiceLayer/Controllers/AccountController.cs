@@ -1,16 +1,11 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using ForumEpam2019.Entities.Context;
 using ForumEpam2019_Entities.Models;
-using ForumEpam2019.Entities.Context;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 using System.Security.Claims;
-using System.Web.Http.Cors;
-using ForumEpam2019_Entities.Models.Identity;
+using System.Web.Http;
+using ForumEpam2019_Entities.Identity.Models;
 
 namespace ForumEpam2019.ServiceLayer.Controllers
 {
@@ -51,31 +46,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
                 LoggedOn = identityClaims.FindFirst("LoggedOn").Value
             };
             return model;
-        }
-
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [Route("api/Admin")]
-        public string ForAdminRole()
-        {
-            return "admin ";
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Moder")]
-        [Route("api/Moder")]
-        public string ForModerRole()
-        {
-            return "moder";
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "User")]
-        [Route("api/User")]
-        public string ForUserRole()
-        {
-            return "user";
         }
     }
 }

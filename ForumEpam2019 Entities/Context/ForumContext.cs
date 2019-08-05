@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-
 using ForumEpam2019.Entities.Models;
+using ForumEpam2019_Entities.Identity.Models;
 using ForumEpam2019_Entities.Models;
-using ForumEpam2019_Entities.Models.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 
 namespace ForumEpam2019.Entities.Context
@@ -22,6 +18,8 @@ namespace ForumEpam2019.Entities.Context
         {
         }
 
+        //public ForumContext(string connectionString) : base(connectionString) { }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -34,10 +32,11 @@ namespace ForumEpam2019.Entities.Context
         }
 
         public virtual DbSet<ProfileInfo> ProfileInfos { get; set; }
-        public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<HashTag> HashTags { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Author> Authors { get; set; }
 
     }
 

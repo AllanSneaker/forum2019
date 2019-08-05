@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ForumEpam2019.BusinessLayer.Configurations;
 using System.Net.Http.Headers;
 using System.Web.Http;
-using System.Web.Http.Cors;
-using ForumEpam2019.BusinessLayer.Configurations;
-using ForumEpam2019.BusinessLayer.Managers;
-using ForumEpam2019.BusinessLayer.Repository;
-using Unity;
 
 namespace ForumEpam2019.ServiceLayer
 {
@@ -18,7 +11,7 @@ namespace ForumEpam2019.ServiceLayer
             //it work
             //var container = new UnityContainer();
             //container.RegisterType<IProfileInfoRepository, ProfileInfoManager>();
-            config.DependencyResolver = new UnityResolver(UnityConfig.BuildUnityContainer());
+            //config.DependencyResolver = new UnityResolver(UnityConfig.BuildUnityContainer());
 
 
             config.MapHttpAttributeRoutes();

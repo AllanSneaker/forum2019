@@ -1,40 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ForumEpam2019.Entities.Context;
+﻿using ForumEpam2019.Entities.Context;
 using ForumEpam2019.Entities.Interfaces;
 using ForumEpam2019.Entities.Models;
 using ForumEpam2019_Entities.Interfaces;
 using ForumEpam2019_Entities.Models;
+using System;
 
 namespace ForumEpam2019_Entities.Repositories
 {
     public class UnitOfWorkEF : IUnitOfWork
     {
-        private ForumContext db;
-        private GenericRepository<ProfileInfo> profileInfoRepository;
-        private GenericRepository<Comment> commentRepository;
-        private GenericRepository<Post> postRepository;
+        private readonly ForumContext _db;
+        private GenericRepository<ProfileInfo> _profileInfoRepository;
+        private GenericRepository<Comment> _commentRepository;
+        private GenericRepository<Post> _postRepository;
+        private GenericRepository<Author> _authorRepository;
+        private GenericRepository<HashTag> _hashTagsRepository;
 
         public UnitOfWorkEF(ForumContext context)
         {
-            db = context;
+            _db = context;
         }
-        public IRepository<ProfileInfo> ProfileInfos => 
-            profileInfoRepository ?? (profileInfoRepository = new GenericRepository<ProfileInfo>(db));
+        public IRepository<ProfileInfo> ProfileInfos =>
+            _profileInfoRepository ?? (_profileInfoRepository = new GenericRepository<ProfileInfo>(_db));
 
-        public IRepository<Comment> Comments => 
-            commentRepository ?? (commentRepository = new GenericRepository<Comment>(db));
+        public IRepository<Comment> Comments =>
+            _commentRepository ?? (_commentRepository = new GenericRepository<Comment>(_db));
 
 
         public IRepository<Post> Posts =>
-            postRepository ?? (postRepository = new GenericRepository<Post>(db));
+            _postRepository ?? (_postRepository = new GenericRepository<Post>(_db));
+
+        public IRepository<Author> Authors =>
+            _authorRepository ?? (_authorRepository = new GenericRepository<Author>(_db));
+
+        public IRepository<HashTag> HashTags =>
+            _hashTagsRepository ?? (_hashTagsRepository = new GenericRepository<HashTag>(_db));
 
         public void Save()
         {
-            db.SaveChanges();
+            _db.SaveChanges();
         }
 
         private bool disposed = false;
@@ -45,7 +49,7 @@ namespace ForumEpam2019_Entities.Repositories
             {
                 if (disposing)
                 {
-                    db.Dispose();
+                    _db.Dispose();
                 }
                 this.disposed = true;
             }

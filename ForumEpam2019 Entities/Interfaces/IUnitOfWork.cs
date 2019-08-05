@@ -10,6 +10,8 @@ namespace ForumEpam2019.Entities.Interfaces
         IRepository<ProfileInfo> ProfileInfos{ get; }
         IRepository<Comment> Comments { get; }
         IRepository<Post> Posts { get; }
+        IRepository<Author> Authors { get; }
+        IRepository<HashTag> HashTags { get; }
         void Save();
     }
 }

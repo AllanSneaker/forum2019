@@ -7,7 +7,8 @@ namespace ForumEpam2019_Entities.Models
         public int Id { get; set; }
         public string Content { get; set; }
         public DateTime Date { get; set; }
-        public int AuthorId { get; set; }
-        public Author Author { get; set; }
+        public virtual Author Author { get; set; }
+        public int? PostId { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

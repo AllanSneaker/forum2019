@@ -141,30 +141,39 @@
   <ItemGroup>
     <Compile Include="Context\ContextInitializer.cs" />
     <Compile Include="Context\ForumContext.cs" />
+    <Compile Include="Identity\Interfaces\IClientService.cs" />
+    <Compile Include="Identity\Interfaces\IUnitOfWorkIdentity.cs" />
+    <Compile Include="Identity\Models\ApplicationRole.cs" />
+    <Compile Include="Identity\Models\ApplicationUser.cs" />
+    <Compile Include="Identity\Repositories\ApplicationRoleService.cs" />
+    <Compile Include="Identity\Repositories\ApplicationUserService.cs" />
+    <Compile Include="Identity\Repositories\ClientService.cs" />
+    <Compile Include="Identity\Repositories\UnitOfWorkIdentity.cs" />
+    <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\201907150833219_InitialMigration.cs" />
-    <Compile Include="Migrations\201907150833219_InitialMigration.Designer.cs">
-      <DependentUpon>201907150833219_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201908050700216_InitialCreate.cs" />
+    <Compile Include="Migrations\201908050700216_InitialCreate.Designer.cs">
+      <DependentUpon>201908050700216_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907151131202_Migration1.cs" />
-    <Compile Include="Migrations\201907151131202_Migration1.Designer.cs">
-      <DependentUpon>201907151131202_Migration1.cs</DependentUpon>
+    <Compile Include="Migrations\201908050930535_Update1.cs" />
+    <Compile Include="Migrations\201908050930535_Update1.Designer.cs">
+      <DependentUpon>201908050930535_Update1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201907191537488_Migration2.cs" />
-    <Compile Include="Migrations\201907191537488_Migration2.Designer.cs">
-      <DependentUpon>201907191537488_Migration2.cs</DependentUpon>
+    <Compile Include="Migrations\201908050936165_Update11.cs" />
+    <Compile Include="Migrations\201908050936165_Update11.Designer.cs">
+      <DependentUpon>201908050936165_Update11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Author.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\HashTag.cs" />
-    <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\ProfileInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\UnitOfWorkEF.cs" />
   </ItemGroup>
@@ -173,16 +182,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907150833219_InitialMigration.resx">
-      <DependentUpon>201907150833219_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908050700216_InitialCreate.resx">
+      <DependentUpon>201908050700216_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907151131202_Migration1.resx">
-      <DependentUpon>201907151131202_Migration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908050930535_Update1.resx">
+      <DependentUpon>201908050930535_Update1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907191537488_Migration2.resx">
-      <DependentUpon>201907191537488_Migration2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908050936165_Update11.resx">
+      <DependentUpon>201908050936165_Update11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

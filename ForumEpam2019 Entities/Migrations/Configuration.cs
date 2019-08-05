@@ -10,6 +10,7 @@ namespace ForumEpam2019_Entities.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "ForumEpam2019.Entities.Context.ForumContext";
         }
 
         protected override void Seed(ForumEpam2019.Entities.Context.ForumContext context)

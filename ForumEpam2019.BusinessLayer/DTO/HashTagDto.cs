@@ -1,4 +1,6 @@
-﻿namespace ForumEpam2019.BusinessLayer.DTO
+﻿using System.Collections.Generic;
+
+namespace ForumEpam2019.BusinessLayer.DTO
 {
     public class HashTagDto
     {
