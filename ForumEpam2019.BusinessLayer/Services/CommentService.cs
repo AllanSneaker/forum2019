@@ -20,7 +20,6 @@ namespace ForumEpam2019.BusinessLayer.Services
             Database = unitOfWork;
         }
 
-        // works
         public IEnumerable<CommentDto> GetAllComments(int commentId)
         {
             var post = Database.Posts.Get(commentId);
@@ -31,7 +30,6 @@ namespace ForumEpam2019.BusinessLayer.Services
             return _autoMapper.Map<IEnumerable<CommentDto>>(Database.Comments.Find(x => x.Post.Id == post.Id));
         }
 
-        //problem with controller 
         public bool AddComment(int postId, CommentDto value)
         {
             if (value == null)
@@ -48,7 +46,6 @@ namespace ForumEpam2019.BusinessLayer.Services
 
         }
 
-        //problem with controller 
         public bool Reply(int commentId, CommentDto value)
         {
             if (value == null)
@@ -62,11 +59,9 @@ namespace ForumEpam2019.BusinessLayer.Services
             var comment = _autoMapper.Map<Comment>(value);
             comment.Date = parentComment.Date;
             comment.Post = parentComment.Post;
+            comment.Parent = parentComment;
             comment.Content = parentComment.Content;
             comment.Author = Database.Authors.Find(x => x.UserName == value.Author).FirstOrDefault();
-
-            //comment.Body = parentComment.Publisher.Name + ", " + value.Body;
-            //comment.Publisher = Database.Publishers.Find(x => x.Name == value.Publisher).FirstOrDefault() ?? throw new PublisherNotFoundException();
 
             Database.Comments.Create(comment);
             Database.Save();
@@ -78,6 +73,5 @@ namespace ForumEpam2019.BusinessLayer.Services
             Database.Dispose();
         }
 
-        
     }
 }

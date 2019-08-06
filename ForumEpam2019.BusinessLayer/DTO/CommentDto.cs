@@ -8,5 +8,6 @@ namespace ForumEpam2019.BusinessLayer.DTO
         public string Content { get; set; }
         public DateTime Date { get; set; }
         public string Author { get; set; }
+        public virtual CommentDto Parent { get; set; }
     }
 }

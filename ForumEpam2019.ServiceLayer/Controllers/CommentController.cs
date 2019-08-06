@@ -26,10 +26,10 @@ namespace ForumEpam2019.ServiceLayer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, _commentService.GetAllComments(id));
         }
 
-        [Route("api/posts/{id}/comments")]
         [HttpPost]
+        [Route("api/posts/{commentId}/comments")]
         [AllowAnonymous]
-        public HttpResponseMessage PostAddComment(int postId, [FromBody]CommentDto value)
+        public HttpResponseMessage AddComment(int postId, [FromBody]CommentDto value)
         {
             if (ModelState.IsValid)
             {
@@ -44,14 +44,14 @@ namespace ForumEpam2019.ServiceLayer.Controllers
             }
         }
 
-        [Route("api/comments/{commentId}/comments")]
         [HttpPost]
+        [Route("api/comments/{commentId}/comments")]
         [AllowAnonymous]
-        public HttpResponseMessage ReplyComment(int postId, [FromBody]CommentDto value)
+        public HttpResponseMessage ReplyComment(int commentId, [FromBody]CommentDto value)
         {
             if (ModelState.IsValid)
             {
-                if (_commentService.Reply(postId, value))
+                if (_commentService.Reply(commentId, value))
                     return Request.CreateResponse(HttpStatusCode.Accepted, "Reply added");
                 else
                     return Request.CreateResponse(HttpStatusCode.NotAcceptable, "");
