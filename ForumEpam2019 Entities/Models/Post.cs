@@ -17,11 +17,11 @@ namespace ForumEpam2019_Entities.Models
         public virtual ICollection<HashTag> HashTags { get; set; }
         public DateTime Date { get; set; }
 
-        //public Post()
-        //{
-        //    Comments = new List<Comment>();
-        //    HashTags = new List<HashTag>();
-        //}
+        public Post()
+        {
+            Comments = new List<Comment>();
+            HashTags = new List<HashTag>();
+        }
 
     }
 }

@@ -28,30 +28,47 @@ namespace ForumEpam2019.Entities.Context
 
             context.ProfileInfos.AddRange(profiles);
 
+            Author author = new Author(){UserName = "Tanaka"};
+            context.Authors.Add(author);
+
             Comment comment = new Comment()
             {
-                Author = new Author() { UserName = "User" },
+                Author = author,
                 Content = "Content",
                 Date = DateTime.Parse("08-01-2019")
             };
             context.Comments.Add(comment);
 
+            HashTag hashTag = new HashTag(){Name = "FindMe"};
+            HashTag hashTag2 = new HashTag() { Name = "Thx" };
+
+            context.HashTags.Add(hashTag);
+            context.HashTags.Add(hashTag2);
+
             Post post = new Post()
             {
-                //  Author = new Author() { Account = new Account() { Id = "132134", UserName = "Author" } },
+                Author = new Author(){UserName = "Ivan"},
                 Title = "Post",
                 Rate = 5,
                 Date = DateTime.Parse("08-01-2019"),
-                Comments = new List<Comment>() { comment }
-                //Comments = new List<Comment>() { new Comment()
-                //{
-                //    Content = "Some Text",
-                //    Date = DateTime.Now
-                //} }
+                Comments = new List<Comment>() { comment },
+                HashTags = new List<HashTag>() { hashTag }
+
+            };
+
+            Post post2 = new Post()
+            {
+                Author = new Author() { UserName = "Oleg" },
+                Title = "Post",
+                Rate = 5,
+                Date = DateTime.Parse("08-01-2019"),
+                Comments = new List<Comment>() { comment },
+                HashTags = new List<HashTag>() { hashTag2 }
 
             };
 
             context.Posts.Add(post);
+            context.Posts.Add(post2);
 
 
 

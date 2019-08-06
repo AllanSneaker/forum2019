@@ -40,6 +40,16 @@ namespace ForumEpam2019.ServiceLayer.Controllers
             }
         }
 
+        [Route("api/search/{value}")]
+        [AllowAnonymous]
+        public HttpResponseMessage GetPostsByHashTags(string value)
+        {
+            if (_postService.SearchPostByHashTag(value).Count() == 0)
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            else
+                return Request.CreateResponse(HttpStatusCode.OK, _postService.SearchPostByHashTag(value));
+        }
+
         [Route("api/posts")]
         [AllowAnonymous]
         [HttpPost]

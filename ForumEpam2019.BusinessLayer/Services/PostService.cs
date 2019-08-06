@@ -19,19 +19,16 @@ namespace ForumEpam2019.BusinessLayer.Services
             Database = unitOfWork;
         }
 
-        //work
         public IEnumerable<PostDto> GetAllPosts()
         {
             return _autoMapper.Map<IEnumerable<PostDto>>(Database.Posts.GetAll());
         }
 
-        //work
         public PostDto GetPost(int id)
         {
             return _autoMapper.Map<PostDto>(Database.Posts.Get(id));
         }
 
-        //work
         public bool PostExist(int id)
         {
             var order = Database.Posts.Get(id);
@@ -47,62 +44,44 @@ namespace ForumEpam2019.BusinessLayer.Services
             }
         }
 
-        //need to correct
         public bool AddPost(PostDto postDto)
         {
             if (postDto == null)
                 throw new ArgumentNullException();
 
+            var hashTags = _autoMapper.Map<ICollection<HashTagDto>, ICollection<HashTag>>(postDto.HashTags);
+
             var post = _autoMapper.Map<Post>(postDto);
-            //var post = new Post()
-            //{
-            //    Author = Database.Authors.Get(postDto.Author.Id),
-            //    Content = postDto.Content,
-            //    Date = DateTime.Now,
-            //    Rate = postDto.Rate,
-            //    Title = postDto.Title
-            //};
+            post.Author = Database.Authors.Find(x => x.UserName == postDto.Author).FirstOrDefault();
+            post.Content = postDto.Content;
+            post.Date = DateTime.Now;
+            post.Rate = postDto.Rate;
+            post.Title = postDto.Title;
+            post.HashTags = hashTags;
+
+            foreach (var tag in postDto.HashTags)
+                post.HashTags.Add(Database.HashTags.Get(GetTag(tag.Name)));
 
             Database.Posts.Create(post);
             Database.Save();
             return true;
         }
 
-        //need to correct
         public bool EditPost(PostDto value)
         {
             if (value == null)
                 throw new ArgumentNullException();
 
-            var tempItem = Database.Posts.Get(value.Id);
+            var post = Database.Posts.Get(value.Id);
 
-            if (tempItem == null)
-                throw new ArgumentNullException();
+            post.Title = value.Title;
+            post.Content = value.Content;
 
-            tempItem.Comments = null;
-            tempItem.Content = value.Content;
-            //tempItem.HashTags = value.HashTags;
-            tempItem.Rate = value.Rate;
-            tempItem.Title = value.Title;
-
-            //if (value.Comments.Count == 0)
-            //{
-            //    Database.Save();
-            //}
-            //else
-            //{
-            //    tempItem.Comments = new List<Comment>();
-            //    foreach (var comment in value.Comments)
-            //        tempItem.Comments.Add(Database.Posts.Create(comment));
-            //    Database.Save();
-            //}
-
-            Database.Posts.Update(tempItem);
+            Database.Posts.Update(post);
             Database.Save();
             return true;
         }
 
-        //work
         public bool DeletePost(int id)
         {
             var post = Database.Posts.Get(id);
@@ -115,16 +94,71 @@ namespace ForumEpam2019.BusinessLayer.Services
             return true;
         }
 
-        //private ICollection<HashTag> GetHashTags(IEnumerable<string> hashTagNames)
+        public void AddTags(int postId, params string[] tags)
+        {
+            if (tags == null)
+                throw new ArgumentNullException();
+
+            var post = Database.Posts.Get(postId);
+
+            post.HashTags.Clear();
+
+            foreach (var tag in tags)
+                if (string.IsNullOrWhiteSpace(tag))
+                    continue;
+                else
+                    post.HashTags.Add(Database.HashTags.Get(GetTag((tag.Trim()))));
+
+            Database.Posts.Update(post);
+            Database.Save();
+        }
+
+        //public string[] GetTags()
         //{
-        //    var hashTags = new List<HashTag>();
-
-        //    foreach (var item in hashTagNames)
-        //        hashTags.Add(Database.HashTags.Find(x => x.Name == item).FirstOrDefault() 
-        //                     ?? throw new ArgumentException("hashTag not found"));
-
-        //    return hashTags;
+        //    return Database.HashTags.GetAll().Select(x => x.Name).ToArray();
         //}
+
+        private int GetTag(string name)
+        {
+            name = name.ToLower();
+            var tag = Database.HashTags.Find(x => x.Name.ToLower() == name).FirstOrDefault();
+
+            if (tag == null)
+                Database.HashTags.Create(new HashTag() { Name = name });
+
+            Database.Save();
+            return Database.HashTags.Find(x => x.Name == name).FirstOrDefault().Id;
+        }
+
+        public IEnumerable<PostDto> SearchPostByHashTag(params string[] tags)
+        {
+            var posts = new List<Post>();
+
+            if (tags == null)
+                return new List<PostDto>();
+
+            foreach (var tag in tags)
+            {
+                if (string.IsNullOrWhiteSpace(tag))
+                    continue;
+
+                var t = Database.HashTags.Find(x => x.Name.ToLower() == tag.ToLower()).FirstOrDefault();
+
+                //if tag do not exist or do not have post
+                if (t == null || t.Posts.Count == 0)
+                {
+                    posts.Clear();
+                    break;
+                }
+
+                if (posts.Count <= 0)
+                    posts = t.Posts.ToList();
+                else
+                    posts = (t.Posts).Intersect(posts).ToList();
+            }
+
+            return _autoMapper.Map<IEnumerable<PostDto>>(posts);
+        }
 
         public void Dispose()
         {

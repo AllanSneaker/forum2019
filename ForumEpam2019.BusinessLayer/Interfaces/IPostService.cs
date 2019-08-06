@@ -13,5 +13,7 @@ namespace ForumEpam2019.BusinessLayer.Interfaces
         bool EditPost(PostDto value);
         bool DeletePost(int id);
         bool PostExist(int id);
+        void AddTags(int postId, params string[] tags);
+        IEnumerable<PostDto> SearchPostByHashTag(params string[] tags);
     }
 }

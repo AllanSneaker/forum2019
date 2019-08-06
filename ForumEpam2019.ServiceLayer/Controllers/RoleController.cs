@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
+﻿using ForumEpam2019.Entities.Context;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ForumEpam2019.Entities.Context;
-using Microsoft.AspNet.Identity;
 
 namespace ForumEpam2019.ServiceLayer.Controllers
 {
