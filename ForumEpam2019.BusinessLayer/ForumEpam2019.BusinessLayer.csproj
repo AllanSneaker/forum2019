@@ -161,13 +161,16 @@
     <Compile Include="DTO\HashTagDto.cs" />
     <Compile Include="DTO\PostDto.cs" />
     <Compile Include="DTO\ProfileInfoDto.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\IPostService.cs" />
     <Compile Include="Interfaces\IProfileInfoRepository.cs" />
     <Compile Include="Interfaces\IProfileInfoService.cs" />
     <Compile Include="Interfaces\IService.cs" />
+    <Compile Include="OperationDetails.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\CommentService.cs" />
     <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\ProfileInfoService.cs" />

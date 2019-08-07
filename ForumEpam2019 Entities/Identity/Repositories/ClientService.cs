@@ -14,7 +14,7 @@ namespace ForumEpam2019_Entities.Identity.Repositories
 
         public void Create(Account item)
         {
-           // Database.Accounts.Add(item);
+            Database.Accounts.Add(item);
             Database.SaveChanges();
         }
 

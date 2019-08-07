@@ -2,6 +2,8 @@
 using ForumEpam2019.BusinessLayer.Managers;
 using ForumEpam2019.BusinessLayer.Services;
 using ForumEpam2019.Entities.Interfaces;
+using ForumEpam2019_Entities.Identity.Interfaces;
+using ForumEpam2019_Entities.Identity.Repositories;
 using ForumEpam2019_Entities.Repositories;
 using Ninject.Modules;
 using Ninject.Web.Common;
@@ -20,6 +22,7 @@ namespace ForumEpam2019.BusinessLayer.Configurations
         {
             //connections UOW
             Bind<IUnitOfWork>().To<UnitOfWorkEF>().WithConstructorArgument(_connectionString);
+            Bind<IUnitOfWorkIdentity>().To<UnitOfWorkIdentity>().WithConstructorArgument(_connectionString);
             //Bind<ForumContext>().ToSelf().InRequestScope();
             //Bind<IUnitOfWork>().To<UnitOfWorkEF>().InRequestScope();
 
@@ -28,6 +31,7 @@ namespace ForumEpam2019.BusinessLayer.Configurations
             Bind<IProfileInfoService>().To<ProfileInfoService>().InRequestScope();
             Bind<IPostService>().To<PostService>().InRequestScope();
             Bind<ICommentService>().To<CommentService>().InRequestScope();
+            Bind<IAccountService>().To<AccountService>().InRequestScope();
 
 
         }

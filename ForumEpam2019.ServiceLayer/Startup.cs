@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ForumEpam2019.BusinessLayer.Interfaces;
 using ForumEpam2019.BusinessLayer.Managers;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 
@@ -12,22 +14,51 @@ namespace ForumEpam2019.ServiceLayer
 {
     public class Startup
     {
+        //public void Configuration(IAppBuilder app)
+        //{
+        //    // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
+
+        //    app.UseCors(CorsOptions.AllowAll);
+
+        //    OAuthAuthorizationServerOptions option = new OAuthAuthorizationServerOptions
+        //    {
+        //        TokenEndpointPath = new PathString("/token"),
+        //        Provider = new OAuthProvider(),
+        //        AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(60),
+        //        AllowInsecureHttp = true
+        //    };
+        //    app.UseOAuthAuthorizationServer(option);
+        //    app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
+        //}
+
         public void Configuration(IAppBuilder app)
         {
-            // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
+            ConfigureAuth(app);
+        }
+        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
 
-            app.UseCors(CorsOptions.AllowAll);
+        public static string PublicClientId { get; private set; }
 
-            OAuthAuthorizationServerOptions option = new OAuthAuthorizationServerOptions
+        public void ConfigureAuth(IAppBuilder app)
+        {
+            var userService = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver
+                .GetService(typeof(IAccountService)) as IAccountService;
+
+            app.UseCookieAuthentication(new CookieAuthenticationOptions());
+
+            PublicClientId = "self";
+            OAuthOptions = new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/token"),
-                Provider = new OAuthProvider(),
-                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(60),
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new OAuthProvider(PublicClientId, userService),
+                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(5),
                 AllowInsecureHttp = true
             };
-            app.UseOAuthAuthorizationServer(option);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
+            app.UseOAuthBearerTokens(OAuthOptions);
         }
+
     }
 }
