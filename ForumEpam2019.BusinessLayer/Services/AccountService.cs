@@ -84,15 +84,16 @@ namespace ForumEpam2019.BusinessLayer.Services
 
         private AccountDto CreateUserDto(ApplicationUser user)
         {
-            return new AccountDto()
-            {
-                Id = user.Id,
-                Email = user.Email,
-                UserName = user.UserName,
-                FirstName = user.Account.FirstName,
-                LastName = user.Account.LastName,
-                // Roles = GetRoleForUser(user.Id),
-            };
+            var acc = new AccountDto();
+            acc.Id = user.Id;
+            acc.Email = user.Email;
+            acc.UserName = user.UserName;
+            acc.FirstName = user.FirstName;
+            acc.LastName = user.LastName;
+                
+            
+            // Roles = GetRoleForUser(user.Id),
+            return acc;
         }
 
         private string GetRoleForUser(string id)

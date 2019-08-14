@@ -3,6 +3,8 @@ using ForumEpam2019_Entities.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -20,51 +22,62 @@ namespace ForumEpam2019.ServiceLayer.Controllers
     //[RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
-        //[Route("api/User/Register")]
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public IdentityResult Register(Account model)
-        //{
-        //    var userStore = new UserStore<ApplicationUser>(new ForumContext());
-        //    var manager = new UserManager<ApplicationUser>(userStore);
-        //    var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
-        //    user.FirstName = model.FirstName;
-        //    user.LastName = model.LastName;
-        //    manager.PasswordValidator = new PasswordValidator
-        //    {
-        //        RequiredLength = 3
-        //    };
-        //    IdentityResult result = manager.Create(user, model.Password);
-        //    manager.AddToRoles(user.Id, model.Roles);
-        //    return result;
-        //}
-
-        //[HttpGet]
-        //[Route("api/GetUserClaims")]
-        //public Account GetUserClaims()
-        //{
-        //    var identityClaims = (ClaimsIdentity)User.Identity;
-        //    IEnumerable<Claim> claims = identityClaims.Claims;
-        //    Account model = new Account()
-        //    {
-        //        UserName = identityClaims.FindFirst("Username").Value,
-        //        Email = identityClaims.FindFirst("Email").Value,
-        //        FirstName = identityClaims.FindFirst("FirstName").Value,
-        //        LastName = identityClaims.FindFirst("LastName").Value,
-        //        LoggedOn = identityClaims.FindFirst("LoggedOn").Value
-        //    };
-        //    return model;
-        //}
-
-        //new version
-
         readonly IAccountService _accountService;
-
         IAuthenticationManager Authentication => Request.GetOwinContext().Authentication;
 
         public AccountController(IAccountService accountService)
         {
             _accountService = accountService;
+        }
+
+        [Route("api/User/Register")]
+        [HttpPost]
+        [AllowAnonymous]
+        public IdentityResult Register(Account model)
+        {
+            var userStore = new UserStore<ApplicationUser>(new ForumContext());
+            var manager = new UserManager<ApplicationUser>(userStore);
+            var user = new ApplicationUser() { UserName = model.UserName, Email = model.Email };
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            manager.PasswordValidator = new PasswordValidator
+            {
+                RequiredLength = 3
+            };
+            IdentityResult result = manager.Create(user, model.Password);
+            manager.AddToRoles(user.Id, model.Roles);
+            return result;
+        }
+
+        [HttpGet]
+        [Route("api/GetUserClaims")]
+        public Account GetUserClaims()
+        {
+            var identityClaims = (ClaimsIdentity)User.Identity;
+            IEnumerable<Claim> claims = identityClaims.Claims;
+            Account model = new Account()
+            {
+                UserName = identityClaims.FindFirst("Username").Value,
+                Email = identityClaims.FindFirst("Email").Value,
+                FirstName = identityClaims.FindFirst("FirstName").Value,
+                LastName = identityClaims.FindFirst("LastName").Value,
+                LoggedOn = identityClaims.FindFirst("LoggedOn").Value
+            };
+            return model;
+        }
+
+        //new version
+
+
+        [HttpGet]
+        [Route("api/users")]
+        [Authorize(Roles = "Admin")]
+        public HttpResponseMessage GetUsers()
+        {
+            if (_accountService.GetAccounts().Count() == 0)
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            else
+                return Request.CreateResponse(HttpStatusCode.OK, _accountService.GetAccounts());
         }
 
         // POST api/Account/Logout

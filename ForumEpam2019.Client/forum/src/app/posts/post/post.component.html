@@ -1,0 +1,52 @@
+<!-- <form class="emp-form" #postForm="ngForm" (ngSubmit)="onSubmit(postForm)">
+        <input type="hidden" name="Id" #Id="ngModel" [(ngModel)]="postService.selectedPost.Id">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input class="form-control" name="Title" #Title="ngModel" [(ngModel)]="postService.selectedPost.Title"
+              placeholder="Title" required>
+            <div class="validation-error" *ngIf="Title.invalid && Title.touched">This Field is Required.</div>
+          </div>
+          <div class="form-group col-md-6">
+            <input class="form-control" name="Content" #Content="ngModel" [(ngModel)]="postService.selectedPost.Content" placeholder="Content"
+              required>
+            <div class="validation-error" *ngIf="Content.invalid && Content.touched">This Field is Required.</div>
+          </div>
+        </div>
+    
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <button [disabled]="!postForm.valid" type="submit" class="btn btn-lg btn-block btn-info">
+              <i class="fa fa-floppy-o"></i> Submit</button>
+          </div>
+          <div class="form-group col-md-4">
+            <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(postForm)">
+              <i class="fa fa-repeat"></i> Reset</button>
+          </div>
+        </div>
+      </form> -->
+
+<!-- need to correct -->
+
+
+      <div class="row">
+            <div class="col-md-12">
+                <h1>{{ posts?.Title }}</h1>
+                <div>
+                    {{ posts?.Content }}
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 col-md-push-6">
+                        <h3>Comments ({{ comments.length }})</h3>
+                        <div *ngFor="let comment of comments">
+                            <strong>{{ comment.email }}</strong> said: <br>
+                            <h4>{{ comment.name }}</h4>
+                            <p>{{ comment.body }}</p>
+                            <hr>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>

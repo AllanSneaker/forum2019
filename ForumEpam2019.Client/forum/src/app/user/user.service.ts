@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { HttpResponse } from "@angular/http/";
-import {HttpResponse} from "@angular/common/http";
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
 import { User } from './user.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
+import {HttpResponse} from "@angular/common/http";
+import { catchError } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
   readonly rootUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
-  registerUser(user: User, roles: string[]) {
+   registerUser(user: User, roles: string[]) {
     const body  = {
       UserName: user.UserName,
       Password: user.Password,

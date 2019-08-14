@@ -87,6 +87,7 @@ namespace ForumEpam2019.ServiceLayer.Controllers
 
         [Route("api/posts/{id}")]
         [AllowAnonymous]
+        [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
             if (_postService.PostExist(id))

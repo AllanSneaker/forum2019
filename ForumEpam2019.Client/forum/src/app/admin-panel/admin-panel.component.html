@@ -1,3 +1,18 @@
-<p>
-  admin-panel works!
-</p>
+<app-nav></app-nav>
+
+<h1>Get Users</h1>
+
+<div class="col-md-6 col-md-pull-3">
+        <h2>Users ({{ users?.length }})</h2>
+        <div *ngFor="let user of users">
+            <div class="card ">
+                <div class="card-block">
+                    <h4 class="card-title">{{ user.UserName }}</h4>
+                    <p class="card-text">{{ user.Email }}</p>
+                    <p class="card-text">{{ user.FirstName }}</p>
+                    <p class="card-text">{{ user.LastName }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+

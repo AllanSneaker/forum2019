@@ -1,18 +1,4 @@
-/* div.sm-jumbotron{
-    margin: 0px;
-    padding: 2rem;
-    background-color: #38547b;
-    color: #fff;
-}
- 
-button.btn-submit{
-    background-color: #38547b;
-    color: #fff;
-    width: 100%;
-}
-button.btn-submit:focus,button.btn-submit:hover{
-    background-color: #38547b;
-} */
+/* You can add global styles to this file, and also import other style files */
 
 button.btn-submit{
     background-color: #38547b;
@@ -49,3 +35,41 @@ div.error-message i{
 .tabs .tab a.active{
     background-color: #fff !important;
 }
+
+
+/* try */
+
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+body, html {
+    height: 100%;
+    margin: 0 auto;
+}
+
+body {
+    font-family: 'Montserrat';
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1.3em;
+    display: grid;
+    grid-template-columns: 30% auto;
+
+    
+    /* a {
+        color: white;
+    } */
+/* }
+
+section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em;
+} */ 

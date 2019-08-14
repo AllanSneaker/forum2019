@@ -21,26 +21,26 @@ namespace ForumEpam2019.ServiceLayer.Controllers
             _accountService = accountService;
         }
 
-        [HttpGet]
-        [Route("api/roles")]
-        [Authorize(Roles = "admin")]
-        public IEnumerable<string> GetRoles()
-        {
-            return _accountService.GetRoles();
-        }
-
         //[HttpGet]
-        //[Route("api/GetAllRoles")]
-        //[AllowAnonymous]
-        //public HttpResponseMessage GetRoles()
+        //[Route("api/roles")]
+        //[Authorize(Roles = "admin")]
+        //public IEnumerable<string> GetRoles()
         //{
-        //    var roleStore = new RoleStore<IdentityRole>(new ForumContext());
-        //    var roleMngr = new RoleManager<IdentityRole>(roleStore);
-
-        //    var roles = roleMngr.Roles
-        //        .Select(x => new { x.Id, x.Name })
-        //        .ToList();
-        //    return this.Request.CreateResponse(HttpStatusCode.OK, roles);
+        //    return _accountService.GetRoles();
         //}
+
+        [HttpGet]
+        [Route("api/GetAllRoles")]
+        [AllowAnonymous]
+        public HttpResponseMessage GetRoles()
+        {
+            var roleStore = new RoleStore<IdentityRole>(new ForumContext());
+            var roleMngr = new RoleManager<IdentityRole>(roleStore);
+
+            var roles = roleMngr.Roles
+                .Select(x => new { x.Id, x.Name })
+                .ToList();
+            return this.Request.CreateResponse(HttpStatusCode.OK, roles);
+        }
     }
 }
