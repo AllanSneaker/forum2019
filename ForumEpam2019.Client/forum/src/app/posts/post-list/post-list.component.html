@@ -13,85 +13,75 @@
     </div>
 </div> -->
 
-<div class="row">
-    <div class="col s12 m7">
-        <div *ngFor="let post of posts">
-            <div class="card">
-                <div class="card-content">
-                    <h4> {{post.Title}}</h4>
-                    <span>{{post.Content}}</span>
-                    <br>
-                    <br>
-                    <a [routerLink]="['/post', post.id]" class="card-link">Read more</a>
+
+<!-- major -->
+
+<div class="col-md-6 col-md-pull-3">
+    <h2>Posts ({{ posts?.length }})</h2>
+    <div class="row">
+        <div class="col s12 m7">
+            <div *ngFor="let post of posts">
+                <div class="card">
+                    <div class="card-content">
+                        <h4> {{post.Title}}</h4>
+                        <span>{{post.Content}}</span>
+                        <br>
+                        <br>
+                        <table class="table table-hover">
+                            <tbody>
+                                <td><a [routerLink]="['/post', post.Id]" class="card-link">Read more</a></td>
+                                <td><button [routerLink]="['/edit', post.Id]" class="btn btn-primary">Edit</button></td>
+                                <td><button (click)="deletePost(post.Id)" class="btn btn-danger">Delete</button>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- same paths
+/edit/{{post.Id}} 
+'/edit', post.Id
+-->
 
 
-<!-- <div class="row">
-        <div class="col-md-12">
-            <h1>{{ posts?.Title }}</h1>
-            <div>
-                {{ posts?.Content }}
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6 col-md-push-6">
-                    <h3>Comments ({{ comments.length }})</h3>
-                    <div *ngFor="let comment of comments">
-                        <strong>{{ comment.email }}</strong> said: <br>
-                        <h4>{{ comment.name }}</h4>
-                        <p>{{ comment.body }}</p>
-                        <hr>
-                    </div>
-                </div>
-                
-                
-            </div>
-        </div>
-    </div> -->
+<!-- third -->
 
+<!-- <div class="container custom-container-2">
 
-
-
-
-
-<!-- <table class="table table-hover">
-
-        <tbody>
+    <div class="no-data text-center" *ngIf="posts.length == 0">
+      <p>There is no post added yet!</p>
+      <button class="btn btn-outline-primary" routerLink="/post/create">Add Post</button>
+    </div>
+  
+    <div *ngIf="posts.length !== 0">
+      <h3 class="mb-3 text-center">Employees List</h3>
+  
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Title</th>
+              <th scope="col">Content</th>
+            </tr>
+          </thead>
+          <tbody>
             <tr *ngFor="let post of posts">
-                <td>{{ post.Title }}</td>
-                <td>{{ post.Content }}</td>
-                 <td><a [routerLink]="['/edit', product._id]" class="btn btn-primary">Edit</a></td>
-                <td><a [routerLink]="" class="btn btn-danger">Delete</a></td> -->
-<!-- </tr>
-        </tbody>
-      </table> -->
-
-
-
-
-
-
-
-
-
-<!-- <input
-  type="button"
-  value="Load Posts Portion"
-  (click)="onLoadClick()"
-  [disabled]="isLoading"
->
-
-<div>
-  <div *ngFor="let post of posts" class="user-container">
-    <h2>
-      <div>{{post.Title}}</div>
-      <div>{{post.Content}}</div>
-    </h2>
-  </div>
-
-  <div *ngIf="isLoading">Loading...</div>
-</div> -->
+              <td>{{post.Id}}</td>
+              <td>{{post.Title}}</td>
+              <td>{{post.Content}}</td>
+              <td>
+                <span class="edit" routerLink="/edit/{{post.Id}}">Edit</span>
+                <span class="delete" (click)="deletePost(post.Id)">Delete</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+  
+  </div> -->

@@ -79,7 +79,7 @@ namespace ForumEpam2019.BusinessLayer.Services
 
             Database.Posts.Update(post);
             Database.Save();
-            return true;
+            return false;
         }
 
         public bool DeletePost(int id)

@@ -25,7 +25,10 @@ import { PostComponent } from './posts/post/post.component';
 import { NavComponent } from './nav/nav.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminService } from './admin-panel/admin.service';
-
+import { PostAddComponent } from './posts/post-add/post-add.component';
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import {MatButtonModule, MatIconModule, MatInputModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,10 +43,13 @@ import { AdminService } from './admin-panel/admin.service';
     PostsComponent,
     PostListComponent,
     NavComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostAddComponent,
+    PostEditComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -52,9 +58,12 @@ import { AdminService } from './admin-panel/admin.service';
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpClientModule,
-    //PostComponent,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatInputModule 
     
-   
+    
    
   ],
   providers: [AdminService, UserService, AuthGuard,

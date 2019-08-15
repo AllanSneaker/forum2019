@@ -9,6 +9,8 @@ import { UserService } from '../user/user.service';
 })
 export class HomeComponent implements OnInit {
 
+    title = 'Angular 8 - Forum 2019';
+    // lead = 'This is a simple blog example created with Angular 2 (Angular-cli)';
   // userClaims: any;
  
   constructor(private router: Router, private userService: UserService) { }

@@ -1,3 +1,24 @@
 /* .nav-wrapper{
     background-color: #38547b !important;
    } */
+
+   header{
+    margin-top: 20px;
+    margin-left: 150px;
+}
+
+button{
+    background-color: #38547b !important;
+    position: fixed !important;
+    right: 15px;
+    bottom: 30px;
+}
+
+.md-fab-bottom-right{
+    position: fixed !important;
+    right: 15px; 
+} 
+
+a{
+    color: #38547b;
+}

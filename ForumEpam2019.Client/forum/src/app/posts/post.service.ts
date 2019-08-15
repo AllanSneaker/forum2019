@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/toPromise';
+import { retry, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 
 @Injectable({
@@ -17,58 +19,64 @@ export class PostService {
   postList : Post[];
   constructor(private http : HttpClient) { }
  
-  // postEmployee(post : Post){
-  //   var body = JSON.stringify(post);
-  //   var headerOptions = new Headers({'Content-Type':'application/json'});
-  //   var requestOptions = new RequestOptions({method : RequestMethod.Post,headers : headerOptions});
-  //   return this.http.post('http://localhost:8080/api/posts/',body,requestOptions).map(x => x.json());
-  // }
- 
-  createUser(
-    post: Post
-  ): Observable<Post> {
-    return this.http.post<Post>(this.baseUrl, post);
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }  
+
+  getPosts(): Observable<Post> {
+    return this.http.get<Post>(this.baseUrl)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
-  // putEmployee(id, emp) {
-  //   var body = JSON.stringify(emp);
-  //   var headerOptions = new Headers({ 'Content-Type': 'application/json' });
-  //   var requestOptions = new RequestOptions({ method: RequestMethod.Put, headers: headerOptions });
-  //   return this.http.put('http://localhost:8080/api/posts/' + id,
-  //     body,
-  //     requestOptions).map(res => res.json());
-  // }
- 
-  putPost(post: Post): Observable<Post> {
-    return this.http.put<Post>(this.baseUrl + post.Id, post);
+  getPost(Id): Observable<Post> {
+    return this.http.get<Post>(this.baseUrl + Id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }  
+
+  createPost(post): Observable<Post> {
+    return this.http.post<Post>(this.baseUrl, JSON.stringify(post), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }  
+
+  updatePost(Id, post): Observable<Post> {
+    return this.http.put<Post>(this.baseUrl + Id, JSON.stringify(post), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
-  // getEmployeeList(){
-  //   this.http.get('http://localhost:8080/api/posts/')
-  //   .map((data : Response) =>{
-  //     return data.json() as Post[];
-  //   }).toPromise().then(x => {
-  //     this.postList = x;
-  //   })
-  // }
- 
-  // getPostList(): Observable<Post> {
-  //   const url = `${this.baseUrl}`;
-  //   return this.http.get<Post>(url);
-  // }
-
-  getPostList() {
-    return this
-           .http
-           .get(`${this.baseUrl}`);
+  deletePost(Id){
+    return this.http.delete<Post>(this.baseUrl +  Id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
 
-  // deleteEmployee(id: number) {
-  //   return this.http.delete('http://localhost:8080/api/posts/' + id).map(res => res.json());
-  // }
 
-  deletePost(id: number): Observable<string> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<string>(url);
-  }
+  handleError(error) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+ }  
+
 }

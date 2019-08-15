@@ -38,6 +38,10 @@ div.error-message i{
 
 
 /* try */
+/* @import "../node_modules/ng2-slim-loading-bar/style.css"; */
+/* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
+
+/* try */
 
 /* @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
@@ -73,3 +77,5 @@ section {
     margin: 0 auto;
     padding: 2em;
 } */ 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

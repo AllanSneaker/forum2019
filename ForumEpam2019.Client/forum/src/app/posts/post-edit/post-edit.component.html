@@ -1,0 +1,61 @@
+<!-- <div class="card">
+    <div class="card-body">
+      <form [formGroup]="angForm" novalidate>
+        <div class="form-group">
+          <label class="col-md-4">Title</label>
+          <input type="text" class="form-control" 
+            formControlName="Title" 
+            #Title 
+            [(ngModel)] = "post.Title"/>
+        </div>
+        <div *ngIf="angForm.controls['Title'].invalid && (angForm.controls['Title'].dirty || angForm.controls['Title'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Title'].errors.required">
+              Title is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Content </label>
+          <textarea class="form-control" rows = 7 cols = "5"
+          formControlName="Content" 
+          #Content [(ngModel)] = "post.Content"></textarea>
+        </div>
+        <div *ngIf="angForm.controls['Content'].invalid && (angForm.controls['Content'].dirty || angForm.controls['Content'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['Content'].errors.required">
+              Content is required.
+          </div>
+        </div>
+    
+        <div class="form-group">
+          <button (click) = "postEdit(post.Id)" type="submit" class="btn btn-primary"
+          [disabled]="angForm.invalid" >
+            Update Post
+          </button>
+        </div>
+      </form>
+    </div>
+  </div> -->
+
+  <!-- updatePost(Title.value, Content.value) -->
+
+<app-nav></app-nav>
+
+  <div class="container custom-container">
+    <div class="col-md-12">
+      
+      <h3 class="mb-3 text-center">Update Post</h3>
+  
+      <div class="form-group">
+        <input type="text" [(ngModel)]="postData.Title" class="form-control" placeholder="Title">
+      </div>
+  
+      <div class="form-group">
+        <input type="text" [(ngModel)]="postData.Content" class="form-control" placeholder="Content">
+      </div>
+  
+      <div class="form-group">
+        <button class="btn btn-success btn-lg btn-block" (click)="updatePost()">Update Post</button>
+      </div>
+      
+    </div>
+  </div>
+  
