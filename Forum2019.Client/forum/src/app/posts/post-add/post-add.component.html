@@ -54,9 +54,19 @@
                     </textarea>
                   </mat-form-field>  -->
 
+                  <!-- good -->
                 <div class="form-group">
                     <input type="text" [(ngModel)]="postDetails.Content" class="form-control" placeholder="Content">
                 </div>
+
+                <!-- <div clss="form-group">
+                    <textarea class="form-control" name="content" id="content" [(ngModel)]="postDetails.Content"
+                    placeholder="Content"></textarea>
+                  </div> -->
+
+                <div class="form-group">
+                  <input type="text" [(ngModel)]="postDetails.HashTag" class="form-control" placeholder="HashTag">
+              </div>
 
                 <div class="form-group">
                     <button class="btn btn-success btn-lg btn-block" (click)="addPost()">Create Post</button>

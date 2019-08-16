@@ -29,6 +29,7 @@ import { PostAddComponent } from './posts/post-add/post-add.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
 import {MatButtonModule, MatIconModule, MatInputModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavComponent,
     ProfileComponent,
     PostAddComponent,
-    PostEditComponent
+    PostEditComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

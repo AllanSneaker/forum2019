@@ -33,6 +33,7 @@ export class PostService {
     )
   }
 
+
   getPost(Id): Observable<Post> {
     return this.http.get<Post>(this.baseUrl + Id)
     .pipe(
@@ -78,5 +79,5 @@ export class PostService {
     window.alert(errorMessage);
     return throwError(errorMessage);
  }  
-
+ 
 }

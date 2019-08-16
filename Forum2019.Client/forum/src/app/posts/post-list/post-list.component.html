@@ -23,8 +23,11 @@
             <div *ngFor="let post of posts">
                 <div class="card">
                     <div class="card-content">
+                        <!-- <div class="float-right">{{ post.Date | Date:'short' }}</div> -->
                         <h4> {{post.Title}}</h4>
                         <span>{{post.Content}}</span>
+                        <br>
+                        <span>{{post.HashTag}}</span>
                         <br>
                         <br>
                         <table class="table table-hover">

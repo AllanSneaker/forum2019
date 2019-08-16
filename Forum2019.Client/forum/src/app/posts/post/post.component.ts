@@ -11,19 +11,29 @@ import { Post } from '../post.model';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  Id: number;
+  
   comments: Array<Comment> = [];
   post: Post[];
-  constructor(private postService: PostService, private commentService: CommentService, private route: ActivatedRoute) { }
+  
+  postData: any = {};
+  Id = this.route.snapshot.params['Id'];
+
+  constructor(private postService: PostService, 
+    private commentService: CommentService, private route: ActivatedRoute) { }
 
   onIdInput(value: number) {
     this.Id = value;
   }
 
   onLoadClick() {
-    this.postService.getPost(this.Id).subscribe(r => {
-      this.post = r.data;
-    });
+
+    this.postService.getPost(this.Id).subscribe((data: {}) => {
+      this.postData = data;
+    })
+
+    // this.postService.getPost(this.Id).subscribe(r => {
+    //   this.post = r.data;
+    // });
   }
 
 

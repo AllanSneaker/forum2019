@@ -29,25 +29,30 @@
 <!-- need to correct -->
 
 
-      <div class="row">
-            <div class="col-md-12">
-                <h1>{{ posts.Title }}</h1>
-                <div>
-                    {{ posts.Content }}
-                </div>
-                <hr>
-                <div class="row">
+<div class="row">
+  <div class="col-md-12">
+    <h1>{{ postData.Title }}</h1>
+    <div>
+      {{ postData.Content }}
+    </div>
+    <hr>
+                <!-- <div class="row">
                     <div class="col-md-6 col-md-push-6">
-                        <h3>Comments ({{ comments.length }})</h3>
-                        <div *ngFor="let comment of comments">
-                            <!-- <strong>{{ comment.Email }}</strong> said: <br>
-                            <h4>{{ comment.UserName }}</h4> -->
-                            <p>{{ comment.Content }}</p>
-                            <hr>
+                        <h3>Comments ({{ postData.Comments.length }})</h3>
+                        <div *ngFor="let comment of postData">
+
+
+    <strong>{{ postData.Comments.Email }}</strong> said: <br>
+                            <h4>{{ postData.Comments.Email }}</h4> -->
+
+
+    <!-- <p>{{ comment.Content }}</p> -->
+                            <!-- <hr>
                         </div>
-                    </div>
-                    <a [routerLink]="['/edit', post.Id]" class="btn btn-primary">Edit</a>
-                    
-                </div>
-            </div>
-        </div>
+                    </div> -->
+
+                    <!-- <a [routerLink]="['/edit', post.Id]" class="btn btn-primary">Edit</a> -->
+
+  </div>
+</div>
+<!-- </div> -->

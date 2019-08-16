@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PostAddComponent implements OnInit {
 
-  @Input() postDetails = { Title: '', Content: '' }
+  @Input() postDetails = { Title: '', Content: '', HashTag: '' }
 
   angForm: FormGroup;
   constructor(private fb: FormBuilder, private ps: PostService, private router: Router) {
@@ -20,7 +20,8 @@ export class PostAddComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       Title: ['', Validators.required ],
-      Content: ['', Validators.required ]
+      Content: ['', Validators.required ],
+      HashTag: ['', Validators.required ]
     });
   }
 

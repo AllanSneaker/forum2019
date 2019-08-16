@@ -33,7 +33,8 @@ export class PostEditComponent implements OnInit {
   createForm() {
     this.angForm = this.fb.group({
       Title: ['', Validators.required ],
-      Content: ['', Validators.required ]
+      Content: ['', Validators.required ],
+      HashTag: ['', Validators.required ]
     });
   }
 
