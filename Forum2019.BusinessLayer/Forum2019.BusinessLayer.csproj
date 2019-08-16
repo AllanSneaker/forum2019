@@ -181,7 +181,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\ForumEpam2019 Entities\ForumEpam2019.Entities.csproj">
+    <ProjectReference Include="..\Forum2019.DAL.Entities\Forum2019.DAL.Entities.csproj">
       <Project>{F6C2CC82-8F87-4427-A922-24846196FEE6}</Project>
       <Name>ForumEpam2019.Entities</Name>
     </ProjectReference>
