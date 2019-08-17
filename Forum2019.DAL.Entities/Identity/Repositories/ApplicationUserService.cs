@@ -1,5 +1,4 @@
-﻿using ForumEpam2019_Entities.Identity.Interfaces;
-using ForumEpam2019_Entities.Identity.Models;
+﻿using ForumEpam2019_Entities.Identity.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

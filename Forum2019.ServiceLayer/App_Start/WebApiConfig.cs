@@ -1,7 +1,6 @@
-﻿using ForumEpam2019.BusinessLayer.Configurations;
+﻿using Microsoft.Owin.Security.OAuth;
 using System.Net.Http.Headers;
 using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
 
 namespace ForumEpam2019.ServiceLayer
 {
@@ -13,6 +12,7 @@ namespace ForumEpam2019.ServiceLayer
             //var container = new UnityContainer();
             //container.RegisterType<IProfileInfoRepository, ProfileInfoManager>();
             //config.DependencyResolver = new UnityResolver(UnityConfig.BuildUnityContainer());
+
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 

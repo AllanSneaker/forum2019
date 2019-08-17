@@ -1,11 +1,9 @@
-﻿using System;
+﻿using ForumEpam2019.Entities.Context;
+using ForumEpam2019_Entities.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ForumEpam2019.Entities.Context;
-using ForumEpam2019_Entities.Interfaces;
 
 namespace ForumEpam2019_Entities.Repositories
 {

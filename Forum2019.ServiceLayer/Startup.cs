@@ -1,12 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using ForumEpam2019.BusinessLayer.Interfaces;
-using ForumEpam2019.BusinessLayer.Managers;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using System;
 
 [assembly: OwinStartup(typeof(ForumEpam2019.ServiceLayer.Startup))]
 

@@ -11,6 +11,7 @@ import { PostComponent } from './posts/post/post.component';
 import { PostAddComponent } from './posts/post-add/post-add.component';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
+import { ModeratorPanelComponent } from './moderator-panel/moderator-panel.component';
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
@@ -40,6 +41,7 @@ export const appRoutes: Routes = [
         children: [{ path: '', component: SignInComponent }]
     },
     { path: 'adminPanel', component: AdminPanelComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+    { path: 'moderatorPanel', component: ModeratorPanelComponent, canActivate: [AuthGuard], data: { roles: ['Moderator'] } },
     { path: 'forbidden', component: ForbiddenComponent, canActivate: [AuthGuard] },
     { path: '', redirectTo: '/login', pathMatch: 'full' }
 

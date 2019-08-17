@@ -18,8 +18,6 @@ using Microsoft.Owin.Security.Cookies;
 
 namespace ForumEpam2019.ServiceLayer.Controllers
 {
-    //[EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
-    //[RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         readonly IAccountService _accountService;
@@ -68,8 +66,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
 
         //new version
 
-
-        [HttpGet]
         [Route("api/users")]
         [Authorize(Roles = "Admin")]
         public HttpResponseMessage GetUsers()
@@ -80,7 +76,7 @@ namespace ForumEpam2019.ServiceLayer.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, _accountService.GetAccounts());
         }
 
-        // POST api/Account/Logout
+        [HttpPost]
         [Route("api/Account/Logout")]
         public IHttpActionResult Logout()
         {
@@ -88,7 +84,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
             return Ok();
         }
 
-        // POST api/Account/Register
         [HttpPost]
         [AllowAnonymous]
         [Route("api/Account/Register")]

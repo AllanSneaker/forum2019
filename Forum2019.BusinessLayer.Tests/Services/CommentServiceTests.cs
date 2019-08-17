@@ -11,14 +11,11 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Forum2019.BusinessLayer.Tests.Services
 {
     [TestFixture]
-   public class CommentServiceTests
+    public class CommentServiceTests
     {
         private Mock<IUnitOfWork> _unitOfWork;
         private Mock<IRepository<Author>> _authorRepository;
@@ -41,7 +38,7 @@ namespace Forum2019.BusinessLayer.Tests.Services
             _commentService = new CommentService(_unitOfWork.Object);
         }
 
-       
+
         static CommentServiceTests()
         {
             try

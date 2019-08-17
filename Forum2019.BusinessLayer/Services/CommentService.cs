@@ -37,7 +37,7 @@ namespace ForumEpam2019.BusinessLayer.Services
 
             var post = Database.Posts.Get(postId);
             var comment = _autoMapper.Map<Comment>(value);
-            comment.Post = post; //?? throw new ItemNotFoundException();
+            comment.Post = post; 
             comment.Author = Database.Authors.Find(x => x.UserName == value.Author).FirstOrDefault();
 
             Database.Comments.Create(comment);

@@ -3,6 +3,7 @@ import { PostService } from '../post.service';
 import { Post } from '../post.model';
 import { filter, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-post-list',
@@ -14,7 +15,12 @@ export class PostListComponent implements OnInit {
   isLoading = false;
 
   posts: any = [];
-  constructor(private postService : PostService, private router: Router) { }
+  constructor(private postService : PostService, private router: Router, private userService : UserService) { }
+
+  userClaims: any;
+ 
+
+ 
 
 
   ngOnInit() {
@@ -24,7 +30,9 @@ export class PostListComponent implements OnInit {
     //     this.posts = data;
     // });
     this.loadPosts();
-  }
+    this.userService.getUserClaims().subscribe((data: any) => {
+      this.userClaims = data;})
+    }
 
   loadPosts() {
     return this.postService.getPosts().subscribe((data: {}) => {

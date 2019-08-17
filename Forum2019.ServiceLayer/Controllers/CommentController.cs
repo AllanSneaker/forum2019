@@ -17,7 +17,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
         }
 
         [Route("api/posts/{id}/comments")]
-        [AllowAnonymous]
         public HttpResponseMessage GetComments(int id)
         {
             if (_commentService.GetAllComments(id).Count() == 0)
@@ -28,7 +27,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
 
         [HttpPost]
         [Route("api/posts/{commentId}/comments")]
-        [AllowAnonymous]
         public HttpResponseMessage AddComment(int postId, [FromBody]CommentDto value)
         {
             if (ModelState.IsValid)
@@ -46,7 +44,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
 
         [HttpPost]
         [Route("api/comments/{commentId}/comments")]
-        [AllowAnonymous]
         public HttpResponseMessage ReplyComment(int commentId, [FromBody]CommentDto value)
         {
             if (ModelState.IsValid)

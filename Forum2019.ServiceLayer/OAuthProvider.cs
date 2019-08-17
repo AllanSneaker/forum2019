@@ -1,4 +1,5 @@
 ﻿using ForumEpam2019.Entities.Context;
+using ForumEpam2019_Entities.Identity.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -7,8 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ForumEpam2019.BusinessLayer.Interfaces;
-using ForumEpam2019_Entities.Identity.Models;
 
 namespace ForumEpam2019.ServiceLayer
 {

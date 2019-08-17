@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ForumEpam2019.BusinessLayer.DTO
 {
-   public class AccountDto
+    public class AccountDto
     {
         public string Id { get; set; }
         public string UserName { get; set; }

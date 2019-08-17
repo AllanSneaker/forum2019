@@ -170,7 +170,6 @@
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\IPostService.cs" />
-    <Compile Include="Interfaces\IProfileInfoRepository.cs" />
     <Compile Include="Interfaces\IProfileInfoService.cs" />
     <Compile Include="Interfaces\IService.cs" />
     <Compile Include="OperationDetails.cs" />

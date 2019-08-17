@@ -17,7 +17,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
         }
 
         [Route("api/posts")]
-        [AllowAnonymous]
         public HttpResponseMessage GetPosts()
         {
             if (_postService.GetAllPosts().Count() == 0)
@@ -27,7 +26,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
         }
 
         [Route("api/posts/{id}")]
-        [AllowAnonymous]
         public HttpResponseMessage GetPost(int id)
         {
             if (_postService.PostExist(id))
@@ -41,7 +39,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
         }
 
         [Route("api/search/{value}")]
-        [AllowAnonymous]
         public HttpResponseMessage GetPostsByHashTags(string value)
         {
             if (_postService.SearchPostByHashTag(value).Count() == 0)
@@ -51,7 +48,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
         }
 
         [Route("api/posts")]
-        [AllowAnonymous]
         [HttpPost]
         public HttpResponseMessage AddPost([FromBody]PostDto value)
         {
@@ -69,7 +65,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
         }
 
         [Route("api/posts/{id}")]
-        [AllowAnonymous]
         public HttpResponseMessage PutPost(int id, [FromBody]PostDto value)
         {
             if (ModelState.IsValid)
@@ -86,8 +81,6 @@ namespace ForumEpam2019.ServiceLayer.Controllers
         }
 
         [Route("api/posts/{id}")]
-        [AllowAnonymous]
-        [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
             if (_postService.PostExist(id))

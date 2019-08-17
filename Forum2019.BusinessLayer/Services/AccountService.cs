@@ -8,7 +8,6 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -90,9 +89,9 @@ namespace ForumEpam2019.BusinessLayer.Services
             acc.UserName = user.UserName;
             acc.FirstName = user.FirstName;
             acc.LastName = user.LastName;
-                
-            
-            // Roles = GetRoleForUser(user.Id),
+
+
+            //Roles = GetRoleForUser(user.Id),
             return acc;
         }
 

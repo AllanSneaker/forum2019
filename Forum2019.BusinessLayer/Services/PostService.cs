@@ -144,7 +144,7 @@ namespace ForumEpam2019.BusinessLayer.Services
 
                 var t = Database.HashTags.Find(x => x.Name.ToLower() == tag.ToLower()).FirstOrDefault();
 
-                //if tag do not exist or do not have post
+                //if hashTag do not exist or do not have post
                 if (t == null || t.Posts.Count == 0)
                 {
                     posts.Clear();

@@ -18,6 +18,9 @@
       <li *ngIf="userService.roleMatch(['Admin'])">
         <a routerLink="/adminPanel">Admin Panel</a>
       </li>
+      <li *ngIf="userService.roleMatch(['Moderator'])">
+          <a routerLink="/moderatorPanel">Moderator Panel</a>
+        </li>
       <li><a routerLink="/home"><i class="large material-icons">home</i></a></li>
       <li><a routerLink="/profile">Profile</a></li>
       <li>
